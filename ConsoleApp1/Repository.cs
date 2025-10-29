@@ -1,48 +1,45 @@
-﻿using ConsoleApp1.Models;
-using ConsoleApp1.Data;
+﻿using ConsoleApp1.Data;
+using ConsoleApp1.Models;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace ConsoleApp1
 {
     public class Repository
-    { 
+    {
         private TestContext context;
-        public Repository() 
+        public Repository()
         {
-           context = new TestContext();
+            context = new TestContext();
         }
-        public async Task AddAsync(Item item)
+        public async Task AddAsync<T>(T dataObject) where T : class, IDbEntity
         {
-            context.Items.Add(item);
+            context.Set<T>().Add(dataObject);
             await context.SaveChangesAsync();
         }
-        public async Task DeleteByIdAsync(int id)
+        public async Task DeleteByIdAsync<T>(int id) where T : class, IDbEntity
         {
-            var item = GetById(id);
-            if (item is not null)
+            var entity = context.Set<T>().FirstOrDefault(e => e.Id == id);
+            if (entity is not null)
             {
-                context.Items.Remove(item);
+                context.Set<T>().Remove(entity);
                 await context.SaveChangesAsync();
 
             }
         }
-        public Item GetById(int id)
+        public T GetById<T>(int id) where T : class, IDbEntity
         {
-            var item = context.Items.FirstOrDefault(e => e.Id == id);
-            return item;
+            var entity = context.Set<T>().FirstOrDefault(e => e.Id == id);
+            return entity;
         }
-        public List<Item> GetAll()
+        public List<Client> GetAll()
         {
-            var items = context.Items.ToList();
-            return items;
+            var client = context.Clients.ToList();
+            return client;
         }
-        public async Task UpdateAsync(Item item)
+        public async Task UpdateAsync(Client client)
         {
-            context.Entry(item).State = EntityState.Modified;
+            context.Entry(client).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
-      
-    }
-
+}
 }

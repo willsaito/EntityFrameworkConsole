@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Models
 {
-    public class Item
+    public class Item :IDbEntity
     {
         public int Id { get; set; }
 

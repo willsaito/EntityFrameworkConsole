@@ -192,7 +192,7 @@ namespace ConsoleApp1
             bool manageItems = true;
             while (manageItems)
             {
-                Console.WriteLine("Items:\nl: list items\nn: insert new item\ne: edit item\nd: delete item\nx: exit to main menu\n");
+                Console.WriteLine("Items:\nl: list items\nn: insert new item\ne: edit item\nd: delete item\nx: back to main menu\n");
                 string input = Console.ReadLine();
                 switch (input)
                 {
@@ -233,7 +233,7 @@ namespace ConsoleApp1
             {
 
 
-                Console.WriteLine("Clients:\nl: list clients\ni: list client's items\nn: insert new client\ne: edit client\nd: delete client\nx: exit to main menu\n");
+                Console.WriteLine("Clients:\nl: list clients\ni: list client's items\nn: insert new client\ne: edit client\nd: delete client\nx: back to main menu\n");
                 string input = Console.ReadLine();
                 switch (input)
                 {

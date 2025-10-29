@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 namespace ConsoleApp1
 {
     public class ItemRepository
-    { 
+    {
         private TestContext context;
-        public ItemRepository() 
+        public ItemRepository()
         {
-           context = new TestContext();
+            context = new TestContext();
         }
         public async Task AddAsync(Item item)
         {
@@ -42,7 +42,22 @@ namespace ConsoleApp1
             context.Entry(item).State = EntityState.Modified;
             await context.SaveChangesAsync();
         }
-      
+        public async Task updateClientID(int id, int clientID)
+        {
+            var entity = context.Items.Find(id); 
+            if (entity != null)
+            {
+                entity.ClientID = clientID;
+                await context.SaveChangesAsync(); 
+            }
+     
+        }
+        public List<Item> GetByClientID(int id)
+        {
+            return context.Items.Where(p => p.ClientID == id).ToList();
+        }
+
+
     }
 
 }

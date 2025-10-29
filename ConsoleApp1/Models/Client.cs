@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Models
 {
-    public class Client : IDbEntity
+    public class Client
     {
         public int Id { get; set; }
 

@@ -18,7 +18,7 @@ internal class Program
       
         while (running)
         {
-            running = consoleInterface.mainMenu();
+            running = consoleInterface.MainMenu();
         }
     }
 }

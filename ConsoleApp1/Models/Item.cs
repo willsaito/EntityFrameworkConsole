@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1.Models
 {
-    public class Item :IDbEntity
+    public class Item
     {
         public int Id { get; set; }
 
@@ -16,5 +16,7 @@ namespace ConsoleApp1.Models
 
         public string Description { get; set; } = null!;
         public int Weight { get; set; }
+
+        public int? ClientID {  get; set; }  
     }
 }
